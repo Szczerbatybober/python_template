@@ -1,0 +1,52 @@
+[tool.poetry]
+name = "{{cookiecutter.project_name}}"
+version = "0.1.0"
+description = ""
+authors = ["{{cookiecutter.author}}"]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+PyYAML = "^6.0"
+
+[tool.poetry.dev-dependencies]
+pytest = "^7.1.2"
+black = "^22.6.0"
+pyright = "^1.1.256"
+flake8 = "^4.0.1"
+isort = "^5.10.1"
+nox = "^2022.1.7"
+coverage = "^6.4.1"
+pre-commit = "^2.19.0"
+pretty-errors = "^1.2.25"
+hypothesis = "^6.48.2"
+pylint = "^2.14.4"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.coverage.paths]
+source = ["python_template"]
+
+[tool.coverage.run]
+branch = true
+command_line = "-m pytest tests/ --junitxml=test_reports/test-report.xml"
+source = ["{{cookiecutter.project_dir}}"]
+omit = ["{{cookiecutter.project_dir}}/main.py"]
+data_file = "test_reports/.coverage"
+
+[tool.coverage.html]
+directory = "test_reports/covhtml"
+
+[tool.coverage.report]
+show_missing = true
+fail_under = 90
+
+[tool.pyright]
+include = ["{{{{cookiecutter.project_dir}}}}", "tests"]
+exclude = [
+    "**/__pycache__",
+    "alembic",
+    ".venv"
+]
+typeCheckingMode = "off"
