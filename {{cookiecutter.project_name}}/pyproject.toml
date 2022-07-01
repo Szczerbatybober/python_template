@@ -43,7 +43,7 @@ show_missing = true
 fail_under = 90
 
 [tool.pyright]
-include = ["{{{{cookiecutter.project_dir}}}}", "tests"]
+include = ["{{cookiecutter.project_dir}}", "tests"]
 exclude = [
     "**/__pycache__",
     "alembic",
