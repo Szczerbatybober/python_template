@@ -1,5 +1,6 @@
 import logging
 from datetime import date
+import requests
 
 logger = logging.getLogger(__name__)
 
@@ -15,3 +16,18 @@ class SampleClass:
         return (
             f"Hello, {name}, it is {self.class_date.strftime(self.DATE_FORMAT)} today"
         )
+
+    def get_random_name(self) -> str:
+        random_user = self._fetch_response()
+        try:
+            return random_user["results"][0]["name"]["first"]
+        except KeyError:
+            logger.error("Could not fetch data from the api, defaulting to John")
+            return "John"
+
+    def _fetch_response(self) -> dict:
+        response = requests.get("https://randomuser.me/api/")
+        if response.ok:
+            return response
+        else:
+            return {}

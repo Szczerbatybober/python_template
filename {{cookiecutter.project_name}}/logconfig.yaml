@@ -19,7 +19,7 @@ handlers:
     formatter: simple
     stream: ext://sys.stdout
 loggers:
-  python_template:
+  { { cookiecutter.project_dir } }:
     level: INFO
     handlers: [logfile, console]
     propagate: yes
