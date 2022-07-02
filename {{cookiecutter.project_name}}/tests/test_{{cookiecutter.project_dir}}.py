@@ -3,7 +3,7 @@ from datetime import date
 
 from hypothesis import given
 from hypothesis.strategies import text
-from unittest.mock import patch
+import responses
 
 from {{cookiecutter.project_dir}} import __version__
 from {{cookiecutter.project_dir}}.logger import init_logger
@@ -24,10 +24,10 @@ def test_python_test(test_str):
     sample_class = SampleClass(def_date=date.today())
     assert isinstance(sample_class.get_greeting(name=test_str), str)
 
-@patch('{{cookiecutter.project_dir}}.sample.sample_class._get_random_user')
-def test_mock_request(mock_random_user):
+@responses.activate
+def test_mock_request():
     sample_class = SampleClass(def_date=date.today())
-    mock_random_user.return_value = {
+    return_value = {
         "results": [
             {
                 "name" : {
@@ -36,4 +36,10 @@ def test_mock_request(mock_random_user):
             }
         ]
     }
+    responses.get(
+        url=sample_class.API_ENDPOINT,
+        json=return_value,
+        status=200
+    )
+
     assert sample_class.get_random_name() == "Test name"

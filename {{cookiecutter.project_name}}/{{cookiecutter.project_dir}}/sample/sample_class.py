@@ -7,6 +7,7 @@ logger = logging.getLogger(__name__)
 
 class SampleClass:
     DATE_FORMAT = "%Y-%m-%d"
+    API_ENDPOINT = "https://randomuser.me/api/"
 
     def __init__(self, def_date: date):
         self.class_date = def_date
@@ -26,7 +27,7 @@ class SampleClass:
             return "John"
 
     def _fetch_response(self) -> dict:
-        response = requests.get("https://randomuser.me/api/")
+        response = requests.get(self.API_ENDPOINT)
         if response.ok:
             return response
         else:
