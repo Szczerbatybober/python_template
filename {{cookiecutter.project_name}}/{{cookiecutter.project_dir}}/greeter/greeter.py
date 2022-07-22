@@ -3,6 +3,8 @@ import json
 from datetime import date
 import requests
 from dacite import from_dict
+from dacite.dataclasses import DefaultValueNotFoundError
+from dacite.exceptions import MissingValueError
 from {{cookiecutter.project_dir}}.models.user import UserAPIResponse
 
 logger = logging.getLogger(__name__)
@@ -27,7 +29,7 @@ class Greeter:
             logger.info(f"{random_user=}")
             user_api_response = from_dict(data_class=UserAPIResponse, data=random_user)
             return self._get_name_from_user(user_api_response)
-        except (KeyError, TypeError):
+        except (MissingValueError, DefaultValueNotFoundError):
             logger.error(
                 "Could not parse data from the api, defaulting to John", exc_info=1
             )

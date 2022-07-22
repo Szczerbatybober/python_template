@@ -21,12 +21,12 @@ def test_logger():
 
 @given(text())
 def test_python_test(test_str):
-    sample_class = SampleClass(def_date=date.today())
+    sample_class = Greeter(def_date=date.today())
     assert isinstance(sample_class.get_greeting(name=test_str), str)
 
 @responses.activate
 def test_mock_request():
-    sample_class = SampleClass(def_date=date.today())
+    sample_class = Greeter(def_date=date.today())
     return_value = {
         "results": [
             {"name": {"first": "Test name", "last": "test last_name", "title": "mrs"}}
