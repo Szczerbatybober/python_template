@@ -1,15 +1,12 @@
-from datetime import date
+from loguru import logger
 
-from {{cookiecutter.project_dir}}.logger import init_logger
-from {{cookiecutter.project_dir}}.greeter.greeter import Greeter
+from {{cookiecutter.project_name}}.models.user import User
 
 
 def entry() -> None:
-    logger = init_logger()
-    logger.info("Starting the app")
-    sample_greeter = Greeter(def_date=date.today())
-    print(sample_greeter.get_greeting("TW"))
-    print(sample_greeter.get_random_name())
+    logger.debug("Loggin hey ho")
+    user: User = User(first_name="Szcz")
+    logger.info(f"Created user with {user.id=}")
 
 
 if __name__ == "__main__":

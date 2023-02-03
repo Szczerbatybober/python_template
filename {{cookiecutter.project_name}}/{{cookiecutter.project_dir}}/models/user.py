@@ -1,29 +1,10 @@
-from dataclasses import dataclass
-from typing import Optional
+from pydantic import Field
+from uuid import UUID, uuid4
+from {{cookiecutter.project_name}}.models.camel_model import CamelModel
 
 
-@dataclass
-class Name:
-    title: str
-    first: str
-    last: str
-
-
-@dataclass
-class Result:
-    gender: Optional[str]
-    name: Name
-
-
-@dataclass
-class Info:
-    seed: str
-    results: int
-    page: int
-    version: str
-
-
-@dataclass
-class UserAPIResponse:
-    results: list[Result]
-    info: Optional[Info]
+class User(CamelModel):
+    id: UUID = Field(default_factory=uuid4)
+    first_name: str
+    last_name: str | None
+    title: str | None

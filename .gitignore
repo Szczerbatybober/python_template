@@ -2,6 +2,10 @@
 *.log
 *.gz
 .vscode/
+.venv
+.dist
+.ruff_cache
+.hypothesis
 
 ### IntelliJ IDEA ###
 .idea
