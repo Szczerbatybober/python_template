@@ -2,16 +2,20 @@ SHELL = /bin/bash
 
 .ONESHELL:
 
-.PHONY: help check clean run test
+.PHONY: help setup check clean run test
 
 
 help:
+	@echo "make setup"
+	@echo "       setups the project"
 	@echo "make test"
 	@echo "       runs pytest with coverage report"
 	@echo "make check"
 	@echo "       runs linters and formatters"
 	@echo "make clean"
 	@echo "       cleans outputs and pycache"
+	@echo "make run"
+	@echo "       runs the main.py file"
 
 .DEFAULT_GOAL = help
 
@@ -31,6 +35,11 @@ run:
 test:
 	@echo "Running pytest..."
 	@poetry run pytest
+
+setup:
+	@echo "Setting up project..."
+	@poetry install
+	@poetry run pre-commit install
 
 clean:
 	@echo "Cleaning..."
