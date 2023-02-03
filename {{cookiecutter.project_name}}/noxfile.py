@@ -14,4 +14,4 @@ def tests(session):
 @nox.session(python=versions)
 def lints(session):
     session.run("poetry", "run", "black", ".")
-    session.run("poetry", "run", "pylint", "{{cookiecutter.project_dir}}")
+    session.run("poetry", "run", "pylint", "{{cookiecutter.project_name}}")
