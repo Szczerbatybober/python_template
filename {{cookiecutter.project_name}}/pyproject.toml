@@ -2,7 +2,7 @@
 name = "{{cookiecutter.project_name}}"
 version = "0.1.0"
 description = ""
-authors = ["Szczerbatybober <szczerbatybober@gmail.com>"]
+authors = ["Author <{{cookiecutter.email}}>"]
 
 [tool.poetry.dependencies]
 python = "^3.10"
@@ -33,6 +33,10 @@ line-length = 120
 
 [tool.ruff]
 line-length = 120
+select = ["ALL"]
+ignore = []
+fixable = ["A", "B", "C", "D", "E", "F", "G", "I", "N", "Q", "S", "T", "W", "ANN", "ARG", "BLE", "COM", "DJ", "DTZ", "EM", "ERA", "EXE", "FBT", "ICN", "INP", "ISC", "NPY", "PD", "PGH", "PIE", "PL", "PT", "PTH", "PYI", "RET", "RSE", "RUF", "SIM", "SLF", "TCH", "TID", "TRY", "UP", "YTT"]
+unfixable = []
 
 
 [tool.pyright]
